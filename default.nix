@@ -78,7 +78,7 @@
   openroad-env = openroad.withPythonPackages python-interpreter-packages;
   self = buildPythonPackage {
     pname = "librelane";
-    version = (builtins.fromTOML (builtins.readFile ./pyproject.toml)).tool.poetry.version;
+    version = (builtins.fromTOML (builtins.readFile ./pyproject.toml)).project.version;
     format = "pyproject";
 
     src =
