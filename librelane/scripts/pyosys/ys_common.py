@@ -19,7 +19,9 @@ try:
     from pyosys import libyosys as ys
 except ImportError:
     try:
+        # flake8: noqa F401
         import libyosys
+
         ys.log_error("Current versions of LibreLane require Yosys 0.59.1 or higher.")
         exit(-1)
     except ImportError:
