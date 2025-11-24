@@ -71,6 +71,9 @@ if { ![info exists ::env(DIODE_CELL)] } {
 } else {
     set diode_cell [lindex [split $::env(DIODE_CELL) "/"] 0]
 
+    # We need to call grt once, so that options like allow_congestion can be set for repair_antennas
+    source $::env(SCRIPTS_DIR)/openroad/common/grt.tcl
+
     while {$i <= $::env(DRT_ANTENNA_REPAIR_ITERS) && [log_cmd check_antennas]} {
         puts "\[INFO\] Running antenna repair iteration $i…"
         set diodes_inserted [log_cmd repair_antennas $diode_cell -ratio_margin $::env(DRT_ANTENNA_REPAIR_MARGIN)]
