@@ -1773,7 +1773,10 @@ class DetailedRouting(OpenROADStep):
     id = "OpenROAD.DetailedRouting"
     name = "Detailed Routing"
 
-    config_vars = OpenROADStep.config_vars + [
+    config_vars = ( 
+        OpenROADStep.config_vars 
+        +grt_variables
+        + [
         Variable(
             "DRT_THREADS",
             Optional[int],
@@ -1821,7 +1824,7 @@ class DetailedRouting(OpenROADStep):
             "Write a DRC report every N iterations. If DRT_SAVE_SNAPSHOTS is enabled, there is an implicit default value of 1.",
         ),
     ]
-
+  )
     def get_script_path(self):
         return os.path.join(get_script_dir(), "openroad", "drt.tcl")
 
